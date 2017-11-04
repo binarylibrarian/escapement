@@ -1,0 +1,20 @@
+version: '2'
+
+services:
+  app:
+    image: golang
+    ports:
+      - "3000:3000"
+      - "8080:8080"
+    volumes:
+      - .:/go/src/github.com/binarylibrarian/escapement
+    working_dir: /go/src/github.com/binarylibrarian/escapement
+    links: 
+      - db
+  db:
+    image: mongo
+    volumes:
+      - ./data:/data/db
+    ports:
+      - "27017:27017"
+    
